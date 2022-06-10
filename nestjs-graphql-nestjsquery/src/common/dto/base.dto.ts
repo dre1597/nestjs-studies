@@ -1,12 +1,17 @@
 import { FilterableField } from '@nestjs-query/query-graphql';
 import { ObjectType } from '@nestjs/graphql';
-import { BaseDto } from '../../../common/dto/base.dto';
 
-@ObjectType('Student')
-export class StudentDto extends BaseDto {
+@ObjectType()
+export class BaseDto {
   @FilterableField()
-  name: string;
+  id: string;
 
   @FilterableField()
-  key: string;
+  createdAt: Date;
+
+  @FilterableField()
+  updatedAt: Date;
+
+  @FilterableField()
+  deletedAt: Date;
 }
