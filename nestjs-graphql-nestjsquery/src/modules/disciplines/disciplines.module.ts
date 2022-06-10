@@ -4,10 +4,12 @@ import {
 } from '@nestjs-query/query-graphql';
 import { NestjsQueryTypeOrmModule } from '@nestjs-query/query-typeorm';
 import { Module } from '@nestjs/common';
-import { CreateDisciplineInput } from './dto/create-discipline.input';
-import { DisciplineDto } from './dto/discipline.dto';
-import { UpdateDisciplineInput } from './dto/update-discipline.input';
-import { Discipline } from './entities/discipline.entity';
+import {
+  CreateDisciplineInput,
+  DisciplineDto,
+  UpdateDisciplineInput,
+} from './dto';
+import { Discipline } from './entities';
 
 @Module({
   imports: [
