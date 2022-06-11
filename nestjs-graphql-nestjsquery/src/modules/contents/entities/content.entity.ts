@@ -1,5 +1,6 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, ManyToOne } from 'typeorm';
 import { BaseEntity } from '../../../common/entities';
+import { Lesson } from '../../../modules/lessons/entities';
 
 @Entity()
 export class Content extends BaseEntity {
@@ -8,4 +9,9 @@ export class Content extends BaseEntity {
 
   @Column()
   linkContent: string;
+
+  @ManyToOne(() => Lesson)
+  lesson: Lesson;
+
+  //Is possible to just use lessonId too
 }
