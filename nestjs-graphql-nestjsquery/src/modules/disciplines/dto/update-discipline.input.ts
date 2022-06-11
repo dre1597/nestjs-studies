@@ -3,6 +3,6 @@ import { CreateDisciplineInput } from './create-discipline.input';
 
 @InputType()
 export class UpdateDisciplineInput extends PartialType(CreateDisciplineInput) {
-  @Field(() => ID, { nullable: true })
+  @Field(() => ID)
   id?: string;
 }
