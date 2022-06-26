@@ -1,0 +1,14 @@
+GET http://localhost:3000/tweets
+
+###
+POST http://localhost:3000/tweets
+Content-Type: application/json
+
+{
+  "name": "any_name",
+  "content": "any_content"
+}
+
+###
+
+GET http://localhost:3000/tweets/1
