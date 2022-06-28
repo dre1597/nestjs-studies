@@ -1,4 +1,8 @@
-import { Route, routeObjectWithoutPoints, RouteProps } from '../../../domain';
+import {
+  Route,
+  routeObjectWithoutPoints,
+  RouteProps,
+} from '../../../../domain';
 import { RouteInMemoryRepository } from './index';
 
 export const createRoute = (routeProps: RouteProps): Route => {

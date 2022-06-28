@@ -1,4 +1,4 @@
-import { Route, RouteRepositoryInterface } from '../../../domain';
+import { Route, RouteRepositoryInterface } from '../../../../domain';
 
 export class RouteInMemoryRepository implements RouteRepositoryInterface {
   public items: Route[] = [];
