@@ -15,28 +15,28 @@ export class Route {
     return this.props.title;
   }
 
+  private set title(title: string) {
+    this.props.title = title;
+  }
+
   public get startPosition(): LatLng {
     return this.props.startPosition;
-  }
-
-  public get endPosition(): LatLng {
-    return this.props.endPosition;
-  }
-
-  public get points(): LatLng[] {
-    return this.props.points;
   }
 
   private set startPosition(startPosition: LatLng) {
     this.props.startPosition = startPosition;
   }
 
+  public get endPosition(): LatLng {
+    return this.props.endPosition;
+  }
+
   private set endPosition(endPosition: LatLng) {
     this.props.endPosition = endPosition;
   }
 
-  private set title(title: string) {
-    this.props.title = title;
+  public get points(): LatLng[] {
+    return this.props.points;
   }
 
   private set points(points: LatLng[]) {
