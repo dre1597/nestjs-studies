@@ -1,1 +1,2 @@
-export * from './in-memory/route';
+export * from './in-memory';
+export * from './typeorm';
