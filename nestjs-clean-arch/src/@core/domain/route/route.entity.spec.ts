@@ -2,7 +2,7 @@ import { LatLng, Route, RouteProps } from './index';
 import { routeObjectWithoutPoints, routeObjectWithPoints } from './mocks';
 
 export const createRoute = (routeProps: RouteProps): Route => {
-  return new Route(routeProps);
+  return Route.create(routeProps);
 };
 
 describe('Route Entity', (): void => {

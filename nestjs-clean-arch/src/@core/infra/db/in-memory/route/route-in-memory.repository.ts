@@ -7,7 +7,7 @@ export class RouteInMemoryRepository implements RouteRepositoryInterface {
     this.items.push(route);
   }
 
-  public async findAll(): Promise<Route[]> {
+  public async index(): Promise<Route[]> {
     return this.items;
   }
 }
