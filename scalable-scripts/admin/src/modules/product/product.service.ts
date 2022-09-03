@@ -7,7 +7,13 @@ import { PrismaService } from '../../prisma/prisma.service';
 export class ProductService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async findAll(): Promise<Product[]> {
+  findAll(): Promise<Product[]> {
     return this.prismaService.product.findMany();
+  }
+
+  create(data: { title: string; image: string }): Promise<Product> {
+    return this.prismaService.product.create({
+      data,
+    });
   }
 }
