@@ -16,4 +16,12 @@ export class ProductService {
       data,
     });
   }
+
+  listOne(productId: string): Promise<Product> {
+    return this.prismaService.product.findUnique({
+      where: {
+        id: productId,
+      },
+    });
+  }
 }
