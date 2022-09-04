@@ -3,20 +3,26 @@ import {
   Controller,
   Delete,
   Get,
+  Inject,
   Param,
   Patch,
   Post,
 } from '@nestjs/common';
 import { Product } from '@prisma/client';
+import { ClientProxy } from '@nestjs/microservices';
 
 import { ProductService } from './product.service';
 
 @Controller('products')
 export class ProductController {
-  constructor(private readonly productService: ProductService) {}
+  constructor(
+    private readonly productService: ProductService,
+    @Inject('PRODUCT_SERVICE') private readonly clientProxy: ClientProxy,
+  ) {}
 
   @Get()
   listAll(): Promise<Product[]> {
+    this.clientProxy.emit('hello', 'Hello from RabbitMQ');
     return this.productService.findAll();
   }
 
