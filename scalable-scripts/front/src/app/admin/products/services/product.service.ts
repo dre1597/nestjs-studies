@@ -17,6 +17,10 @@ export class ProductService {
     return this.httpClient.get<Product[]>(this._endpoint);
   }
 
+  create(product: { title: string; image: string }): Observable<void> {
+    return this.httpClient.post<void>(this._endpoint, product);
+  }
+
   delete(productId: string): Observable<void> {
     return this.httpClient.delete<void>(`${this._endpoint}/${productId}`);
   }

@@ -1,0 +1,23 @@
+<form (submit)="create()">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input
+      type="text"
+      class="form-control"
+      name="title"
+      id="title"
+      [(ngModel)]="title"
+    />
+  </div>
+  <div class="form-group">
+    <label for="image">Image</label>
+    <input
+      type="text"
+      class="form-control"
+      name="image"
+      id="image"
+      [(ngModel)]="image"
+    />
+  </div>
+  <button class="btn btn-primary">Save</button>
+</form>
