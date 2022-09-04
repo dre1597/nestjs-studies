@@ -1,0 +1,23 @@
+<form [formGroup]="form" (submit)="update()">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input
+      type="text"
+      class="form-control"
+      name="title"
+      id="title"
+      formControlName="title"
+    />
+  </div>
+  <div class="form-group">
+    <label for="image">Image</label>
+    <input
+      type="text"
+      class="form-control"
+      name="image"
+      id="image"
+      formControlName="image"
+    />
+  </div>
+  <button class="btn btn-primary">Save</button>
+</form>

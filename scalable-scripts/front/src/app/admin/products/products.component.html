@@ -11,7 +11,7 @@
         <th scope="col">Image</th>
         <th scope="col">Title</th>
         <th scope="col">Likes</th>
-        <th scope="col">Action</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -21,6 +21,12 @@
         <td>{{ product.title }}</td>
         <td>{{ product.likes }}</td>
         <td>
+          <button
+            [routerLink]="['/admin/products', product.id, 'edit']"
+            class="btn btn-info btn-sm"
+          >
+            Edit
+          </button>
           <button
             (click)="deleteProduct(product.id)"
             class="btn btn-danger btn-sm"

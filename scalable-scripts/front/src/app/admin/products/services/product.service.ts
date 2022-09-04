@@ -21,6 +21,20 @@ export class ProductService {
     return this.httpClient.post<void>(this._endpoint, product);
   }
 
+  findOne(productId: string): Observable<Product> {
+    return this.httpClient.get<Product>(`${this._endpoint}/${productId}`);
+  }
+
+  update(
+    productId: string,
+    product: { title: string; image: string }
+  ): Observable<void> {
+    return this.httpClient.patch<void>(
+      `${this._endpoint}/${productId}`,
+      product
+    );
+  }
+
   delete(productId: string): Observable<void> {
     return this.httpClient.delete<void>(`${this._endpoint}/${productId}`);
   }
