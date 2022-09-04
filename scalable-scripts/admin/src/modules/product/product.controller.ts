@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { Product } from '@prisma/client';
 
 import { ProductService } from './product.service';
@@ -16,7 +24,7 @@ export class ProductController {
   create(
     @Body('title') title: string,
     @Body('image') image: string,
-  ): Promise<Product> {
+  ): Promise<void> {
     return this.productService.create({ title, image });
   }
 
@@ -30,7 +38,12 @@ export class ProductController {
     @Param('id') productId: string,
     @Body('title') title: string,
     @Body('image') image: string,
-  ): Promise<Product> {
+  ): Promise<void> {
     return this.productService.update(productId, { title, image });
+  }
+
+  @Delete(':id')
+  remove(@Param('id') productId: string): Promise<void> {
+    return this.productService.remove(productId);
   }
 }

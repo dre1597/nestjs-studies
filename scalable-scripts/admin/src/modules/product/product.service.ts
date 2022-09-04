@@ -11,8 +11,8 @@ export class ProductService {
     return this.prismaService.product.findMany();
   }
 
-  create(data: { title: string; image: string }): Promise<Product> {
-    return this.prismaService.product.create({
+  async create(data: { title: string; image: string }): Promise<void> {
+    await this.prismaService.product.create({
       data,
     });
   }
@@ -25,15 +25,23 @@ export class ProductService {
     });
   }
 
-  update(
+  async update(
     productId: string,
     data: { title: string; image: string },
-  ): Promise<Product> {
-    return this.prismaService.product.update({
+  ): Promise<void> {
+    await this.prismaService.product.update({
       where: {
         id: productId,
       },
       data,
+    });
+  }
+
+  async remove(productId: string): Promise<void> {
+    await this.prismaService.product.delete({
+      where: {
+        id: productId,
+      },
     });
   }
 }
