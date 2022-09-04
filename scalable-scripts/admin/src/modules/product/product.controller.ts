@@ -22,16 +22,17 @@ export class ProductController {
 
   @Get()
   listAll(): Promise<Product[]> {
-    this.clientProxy.emit('hello', 'Hello from RabbitMQ');
     return this.productService.findAll();
   }
 
   @Post()
-  create(
+  async create(
     @Body('title') title: string,
     @Body('image') image: string,
   ): Promise<void> {
-    return this.productService.create({ title, image });
+    const product = await this.productService.create({ title, image });
+
+    this.clientProxy.emit('product_created', product);
   }
 
   @Get(':id')
@@ -40,16 +41,23 @@ export class ProductController {
   }
 
   @Patch(':id')
-  update(
+  async update(
     @Param('id') productId: string,
     @Body('title') title: string,
     @Body('image') image: string,
   ): Promise<void> {
-    return this.productService.update(productId, { title, image });
+    const product = await this.productService.update(productId, {
+      title,
+      image,
+    });
+
+    this.clientProxy.emit('product_updated', product);
   }
 
   @Delete(':id')
-  remove(@Param('id') productId: string): Promise<void> {
-    return this.productService.remove(productId);
+  async remove(@Param('id') productId: string): Promise<void> {
+    await this.productService.remove(productId);
+
+    this.clientProxy.emit('product_deleted', productId);
   }
 }
