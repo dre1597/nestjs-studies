@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { Product } from '@prisma/client';
 
 import { ProductService } from './product.service';
@@ -23,5 +23,14 @@ export class ProductController {
   @Get(':id')
   listOne(@Param('id') productId: string): Promise<Product> {
     return this.productService.listOne(productId);
+  }
+
+  @Patch(':id')
+  update(
+    @Param('id') productId: string,
+    @Body('title') title: string,
+    @Body('image') image: string,
+  ): Promise<Product> {
+    return this.productService.update(productId, { title, image });
   }
 }

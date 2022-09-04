@@ -24,4 +24,16 @@ export class ProductService {
       },
     });
   }
+
+  update(
+    productId: string,
+    data: { title: string; image: string },
+  ): Promise<Product> {
+    return this.prismaService.product.update({
+      where: {
+        id: productId,
+      },
+      data,
+    });
+  }
 }
