@@ -60,4 +60,9 @@ export class ProductController {
 
     this.clientProxy.emit('product_deleted', productId);
   }
+
+  @Post(':id/like')
+  async like(@Param('id') productId: string): Promise<void> {
+    return this.productService.like(productId);
+  }
 }

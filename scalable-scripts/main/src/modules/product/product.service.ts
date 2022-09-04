@@ -1,4 +1,6 @@
+import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
@@ -6,9 +8,13 @@ import { Product, ProductDocument } from './product.model';
 
 @Injectable()
 export class ProductService {
+  private _baseUrl = this.configService.get<string>('MAIN_API_URL');
+
   constructor(
     @InjectModel(Product.name)
     private readonly productModel: Model<ProductDocument>,
+    private readonly httpService: HttpService,
+    private readonly configService: ConfigService,
   ) {}
 
   findAll(): Promise<Product[]> {
@@ -19,15 +25,23 @@ export class ProductService {
     await new this.productModel(product).save();
   }
 
-  findOne(id: string): Promise<Product> {
-    return this.productModel.findOne({ id }).exec();
+  async like(productId: string): Promise<void> {
+    const product: Product = await this.findOne(productId);
+
+    this.httpService.post(`${this._baseUrl}/products/${productId}/like`, {});
+
+    await this.update(productId, { likes: product.likes + 1 });
   }
 
-  async update(id: number, product): Promise<void> {
-    await this.productModel.findOneAndUpdate({ id }, product).exec();
+  findOne(productId: string): Promise<Product> {
+    return this.productModel.findOne({ id: productId }).exec();
   }
 
-  async delete(id: number): Promise<void> {
-    await this.productModel.deleteOne({ id }).exec();
+  async update(productId: string, product): Promise<void> {
+    await this.productModel.findOneAndUpdate({ id: productId }, product).exec();
+  }
+
+  async delete(productId: string): Promise<void> {
+    await this.productModel.deleteOne({ id: productId }).exec();
   }
 }

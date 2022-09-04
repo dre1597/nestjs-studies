@@ -44,4 +44,17 @@ export class ProductService {
       },
     });
   }
+
+  async like(productId: string): Promise<void> {
+    const product: Product = await this.listOne(productId);
+
+    await this.prismaService.product.update({
+      where: {
+        id: productId,
+      },
+      data: {
+        likes: product.likes + 1,
+      },
+    });
+  }
 }

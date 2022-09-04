@@ -1,4 +1,5 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { HttpService } from '@nestjs/axios';
+import { Controller, Get, Param, Post } from '@nestjs/common';
 import { EventPattern } from '@nestjs/microservices';
 
 import { ProductService } from './product.service';
@@ -6,7 +7,10 @@ import { Product } from './product.model';
 
 @Controller('products')
 export class ProductController {
-  constructor(private readonly productService: ProductService) {}
+  constructor(
+    private readonly productService: ProductService,
+    private readonly httpService: HttpService,
+  ) {}
 
   @Get()
   listAll(): Promise<Product[]> {
@@ -25,6 +29,11 @@ export class ProductController {
     });
   }
 
+  @Post(':id/like')
+  async like(@Param('id') productId: string): Promise<void> {
+    return this.productService.like(productId);
+  }
+
   @Get(':id')
   listOne(@Param('id') productId: string): Promise<Product> {
     return this.productService.findOne(productId);
@@ -38,7 +47,7 @@ export class ProductController {
   }
 
   @EventPattern('product_deleted')
-  async delete(id: number): Promise<void> {
-    await this.productService.delete(id);
+  async delete(productId: string): Promise<void> {
+    await this.productService.delete(productId);
   }
 }
