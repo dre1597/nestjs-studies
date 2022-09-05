@@ -8,6 +8,7 @@ import { AdminComponent } from './admin.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductCreateComponent } from './products/product-create/product-create.component';
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
+import { ProductService } from './services/product.service';
 
 @NgModule({
   declarations: [
@@ -23,5 +24,6 @@ import { ProductEditComponent } from './products/product-edit/product-edit.compo
     FormsModule,
     ReactiveFormsModule,
   ],
+  providers: [ProductService],
 })
 export class AdminModule {}

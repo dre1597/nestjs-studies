@@ -25,20 +25,22 @@ export class ProductService {
     await new this.productModel(product).save();
   }
 
-  async like(productId: string): Promise<void> {
+  async like(productId: string): Promise<Product> {
     const product: Product = await this.findOne(productId);
 
     this.httpService.post(`${this._baseUrl}/products/${productId}/like`, {});
 
-    await this.update(productId, { likes: product.likes + 1 });
+    return this.update(productId, { likes: product.likes + 1 });
   }
 
   findOne(productId: string): Promise<Product> {
     return this.productModel.findOne({ id: productId }).exec();
   }
 
-  async update(productId: string, product): Promise<void> {
-    await this.productModel.findOneAndUpdate({ id: productId }, product).exec();
+  async update(productId: string, product): Promise<Product> {
+    return this.productModel
+      .findOneAndUpdate({ id: productId }, product, { new: true })
+      .exec();
   }
 
   async delete(productId: string): Promise<void> {

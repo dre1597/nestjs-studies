@@ -2,14 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { environment } from '../../../../environments/environment';
-import { Product } from '../interfaces/product';
+import { environment } from '../../../environments/environment';
+import { Product } from '../../shared/interfaces/product';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class ProductService {
-  private _endpoint = `${environment.baseApiUrl}/products`;
+  private _endpoint = `${environment.baseAdminApiUrl}/products`;
 
   constructor(private httpClient: HttpClient) {}
 

@@ -30,7 +30,7 @@ export class ProductController {
   }
 
   @Post(':id/like')
-  async like(@Param('id') productId: string): Promise<void> {
+  async like(@Param('id') productId: string): Promise<Product> {
     return this.productService.like(productId);
   }
 
