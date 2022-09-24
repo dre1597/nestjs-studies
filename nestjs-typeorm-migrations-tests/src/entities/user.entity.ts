@@ -18,7 +18,7 @@ export default class User {
   name: string;
 
   @Column()
-  profile_id: string;
+  profile_id: number;
 
   @OneToOne(() => Profile, { onUpdate: 'CASCADE', onDelete: 'CASCADE' })
   @JoinColumn({ name: 'profile_id' })

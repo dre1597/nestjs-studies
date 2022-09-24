@@ -1,1 +1,4 @@
-export class CreateProfileDto {}
+export class CreateProfileDto {
+  gender: string;
+  photo: string;
+}
