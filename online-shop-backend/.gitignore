@@ -45,3 +45,4 @@ lerna-debug.log*
 # SQLite database
 
 /prisma/database/dev.db
+/prisma/database/dev.db-journal
