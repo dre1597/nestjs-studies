@@ -74,10 +74,10 @@ $ yarn run test:cov
 ## Migration and seeds
 
 ```bash
-# run migrations
+# create database, run migrations and seeds
 $ yarn prisma migrate dev
 
-# run seeds
+# run seed only
 $ yarn prisma db seed
 ```
 
