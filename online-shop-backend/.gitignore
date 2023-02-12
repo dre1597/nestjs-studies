@@ -41,3 +41,7 @@ lerna-debug.log*
 # Eslint
 
 .eslintcache
+
+# SQLite database
+
+/prisma/database/dev.db
