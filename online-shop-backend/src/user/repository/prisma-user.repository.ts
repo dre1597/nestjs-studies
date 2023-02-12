@@ -5,6 +5,7 @@ import { hash } from 'argon2';
 import { PrismaService } from '../../database';
 import { CreateUserDto } from '../boundary';
 import { CreateUserRO } from '../boundary/create-user.ro';
+import { USER_ROLES } from '../domain';
 import { UserRepository } from './user.repository';
 
 @Injectable()
@@ -20,6 +21,7 @@ export class PrismaUserRepository implements UserRepository {
       email: user.email,
       cpf: user.cpf,
       phone: user.phone,
+      role: user.role as USER_ROLES,
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
     }));
@@ -38,6 +40,7 @@ export class PrismaUserRepository implements UserRepository {
       email: createdUser.email,
       cpf: createdUser.cpf,
       phone: createdUser.phone,
+      role: createdUser.role as USER_ROLES,
       createdAt: createdUser.createdAt,
       updatedAt: createdUser.updatedAt,
     };

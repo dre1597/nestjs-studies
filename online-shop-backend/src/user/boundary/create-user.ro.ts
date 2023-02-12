@@ -1,3 +1,3 @@
-import { UserEntity } from '../entity';
+import { UserEntity } from '../domain';
 
 export type CreateUserRO = Omit<UserEntity, 'password'>;

@@ -4,7 +4,7 @@ import { randomUUID } from 'node:crypto';
 
 import { CreateUserDto } from '../boundary';
 import { CreateUserRO } from '../boundary/create-user.ro';
-import { UserEntity } from '../entity';
+import { UserEntity } from '../domain';
 import { UserRepository } from './user.repository';
 
 @Injectable()
@@ -23,6 +23,7 @@ export class InMemoryUserRepository implements UserRepository {
       ...dto,
       id: randomUUID(),
       password: await hash(dto.password),
+      role: 'USER',
       createdAt: new Date(),
       updatedAt: new Date(),
     };
