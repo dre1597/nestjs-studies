@@ -1,3 +1,12 @@
+# Online shop backend
+
+I'm following the videos from this [YouTube series](https://www.youtube.com/watch?v=6FT7Y_tyokQ) but with some modifications like:
+
+- Different folder structure and nomenclature
+- Using Prisma instead of Typeorm
+- Using Sqlite instead of Postgres
+
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
