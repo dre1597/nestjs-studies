@@ -3,7 +3,7 @@ import { Controller, Get } from '@nestjs/common';
 import { FindAllStatesRo } from './boundary';
 import { StateService } from './state.service';
 
-@Controller('state')
+@Controller('states')
 export class StateController {
   constructor(private readonly service: StateService) {}
 

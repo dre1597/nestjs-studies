@@ -4,7 +4,7 @@ import { CustomCacheService } from '../../shared/custom-cache/custom-cache.servi
 import { FindAllCitiesByStateRo } from './boundary';
 import { CityService } from './city.service';
 
-@Controller('city')
+@Controller('cities')
 export class CityController {
   constructor(
     private readonly cityService: CityService,

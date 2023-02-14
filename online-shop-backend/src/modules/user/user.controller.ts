@@ -4,7 +4,7 @@ import { CreateUserDto } from './boundary';
 import { CreateUserRO } from './boundary/create-user.ro';
 import { UserService } from './user.service';
 
-@Controller('user')
+@Controller('users')
 export class UserController {
   constructor(private readonly service: UserService) {}
 
