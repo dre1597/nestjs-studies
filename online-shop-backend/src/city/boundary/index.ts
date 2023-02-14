@@ -1,1 +1,1 @@
-export * from './find-all-by-state.ro';
+export * from './find-all-cities-by-state.ro';

@@ -1,5 +1,5 @@
-import { FindAllByStateRo } from '../boundary';
+import { FindAllCitiesByStateRo } from '../boundary';
 
 export abstract class CityRepository {
-  abstract findAllByState(stateId: string): Promise<FindAllByStateRo[]>;
+  abstract findAllByState(stateId: string): Promise<FindAllCitiesByStateRo[]>;
 }

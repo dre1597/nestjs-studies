@@ -1,7 +1,7 @@
 import { Controller, Get, Param } from '@nestjs/common';
 
 import { CustomCacheService } from '../../custom-cache/custom-cache.service';
-import { FindAllByStateRo } from '../boundary';
+import { FindAllCitiesByStateRo } from '../boundary';
 import { CityService } from '../service';
 
 @Controller('city')
@@ -14,8 +14,8 @@ export class CityController {
   @Get('/:stateId')
   async findAllByState(
     @Param('stateId') stateId: string,
-  ): Promise<FindAllByStateRo[]> {
-    return this.cacheService.getCache<FindAllByStateRo[]>(
+  ): Promise<FindAllCitiesByStateRo[]> {
+    return this.cacheService.getCache<FindAllCitiesByStateRo[]>(
       `state_${stateId}`,
       () => this.cityService.findAllByState(stateId),
     );
