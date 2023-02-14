@@ -1,13 +1,19 @@
 import { Injectable } from '@nestjs/common';
 
+import { CustomCacheService } from '../../shared/custom-cache/custom-cache.service';
 import { FindAllStatesRo } from './boundary';
 import { StateRepository } from './repository';
 
 @Injectable()
 export class StateService {
-  constructor(private readonly stateRepository: StateRepository) {}
+  constructor(
+    private readonly stateRepository: StateRepository,
+    private readonly cacheService: CustomCacheService,
+  ) {}
 
-  findAll(): Promise<FindAllStatesRo[]> {
-    return this.stateRepository.findAll();
+  async findAll(): Promise<FindAllStatesRo[]> {
+    return this.cacheService.getCache<FindAllStatesRo[]>('states', () =>
+      this.stateRepository.findAll(),
+    );
   }
 }
