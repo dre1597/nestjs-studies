@@ -40,7 +40,6 @@ export class PrismaUserRepository implements UserRepository {
       email: createdUser.email,
       cpf: createdUser.cpf,
       phone: createdUser.phone,
-      role: createdUser.role as USER_ROLES,
       createdAt: createdUser.createdAt,
       updatedAt: createdUser.updatedAt,
     };

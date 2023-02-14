@@ -31,6 +31,7 @@ export class InMemoryUserRepository implements UserRepository {
     this._users.push(newUser);
 
     delete newUser.password;
+    delete newUser.role;
 
     return newUser;
   }
