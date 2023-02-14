@@ -1,4 +1,4 @@
-import { BaseEntity } from '../../shared/entity';
+import { BaseEntity } from '../../../shared/entity';
 
 export class AddressEntity extends BaseEntity {
   complement?: string;

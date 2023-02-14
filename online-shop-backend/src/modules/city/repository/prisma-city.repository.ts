@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { PrismaService } from '../../database';
+import { PrismaService } from '../../../shared/database';
 import { FindAllCitiesByStateRo } from '../boundary';
 import { CityRepository } from './city.repository';
 

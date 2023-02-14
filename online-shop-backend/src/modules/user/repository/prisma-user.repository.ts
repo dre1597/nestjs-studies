@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { User as UserPrismaModel } from '@prisma/client';
 import { hash } from 'argon2';
 
-import { PrismaService } from '../../database';
+import { PrismaService } from '../../../shared/database';
 import { CreateUserDto } from '../boundary';
 import { CreateUserRO } from '../boundary/create-user.ro';
 import { USER_ROLES } from '../domain';

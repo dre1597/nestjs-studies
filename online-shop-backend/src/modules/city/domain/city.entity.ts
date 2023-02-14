@@ -1,4 +1,4 @@
-import { BaseEntity } from '../../shared/entity';
+import { BaseEntity } from '../../../shared/entity';
 
 export class CityEntity extends BaseEntity {
   name: string;

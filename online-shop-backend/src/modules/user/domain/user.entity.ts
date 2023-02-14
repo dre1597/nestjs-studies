@@ -1,4 +1,4 @@
-import { BaseEntity } from '../../shared/entity';
+import { BaseEntity } from '../../../shared/entity';
 import { USER_ROLES } from './role.enum';
 
 export class UserEntity extends BaseEntity {
