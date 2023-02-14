@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 
-import { CreateUserDto } from '../boundary';
-import { CreateUserRO } from '../boundary/create-user.ro';
-import { UserRepository } from '../repository';
+import { CreateUserDto } from './boundary';
+import { CreateUserRO } from './boundary/create-user.ro';
+import { UserRepository } from './repository';
 
 @Injectable()
 export class UserService {

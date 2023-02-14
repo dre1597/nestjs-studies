@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
-import { FindAllCitiesByStateRo } from '../boundary';
-import { CityRepository } from '../repository';
+import { FindAllCitiesByStateRo } from './boundary';
+import { CityRepository } from './repository';
 
 @Injectable()
 export class CityService {

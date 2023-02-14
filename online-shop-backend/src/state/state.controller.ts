@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 
-import { FindAllStatesRo } from '../boundary';
-import { StateService } from '../service';
+import { FindAllStatesRo } from './boundary';
+import { StateService } from './state.service';
 
 @Controller('state')
 export class StateController {

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
-import { FindAllStatesRo } from '../boundary';
-import { StateRepository } from '../repository';
+import { FindAllStatesRo } from './boundary';
+import { StateRepository } from './repository';
 
 @Injectable()
 export class StateService {
