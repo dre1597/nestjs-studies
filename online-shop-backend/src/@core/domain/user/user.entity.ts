@@ -14,7 +14,7 @@ export class UserEntity extends BaseEntity {
     this.props = { ...props, role: role || 'USER' };
   }
 
-  static create(props: UserProps, id?: string, role?: USER_ROLES) {
+  static create(props: UserProps, id?: string, role?: USER_ROLES): UserEntity {
     return new UserEntity(props, id, role);
   }
 }
