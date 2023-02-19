@@ -2,7 +2,7 @@ import { BaseEntity } from '../shared';
 import { StateProps } from './types';
 
 export class StateEntity extends BaseEntity {
-  public props: Required<StateProps>;
+  public props: StateProps;
 
   private constructor(props: StateProps, id?: string) {
     super(id);

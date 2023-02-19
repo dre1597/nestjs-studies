@@ -2,7 +2,7 @@ import { BaseEntity } from '../shared';
 import { CityProps } from './types';
 
 export class CityEntity extends BaseEntity {
-  public props: Required<CityProps>;
+  public props: CityProps;
 
   private constructor(props: CityProps, id?: string) {
     super(id);
