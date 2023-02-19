@@ -1,10 +1,13 @@
-import { Injectable } from '@nestjs/common';
-import { User as UserPrismaModel } from '@prisma/client';
+import {
+  ConflictException,
+  Injectable,
+  InternalServerErrorException,
+} from '@nestjs/common';
+import { Prisma, User as UserPrismaModel } from '@prisma/client';
 import { hash } from 'argon2';
 
 import { PrismaService } from '../../../shared/database';
-import { CreateUserDto } from '../boundary';
-import { CreateUserRO } from '../boundary/create-user.ro';
+import { CreateUserDto, CreateUserRO } from '../boundary';
 import { USER_ROLES } from '../domain';
 import { UserRepository } from './user.repository';
 
@@ -26,22 +29,39 @@ export class PrismaUserRepository implements UserRepository {
       updatedAt: user.updatedAt,
     }));
   }
-  async create(dto: CreateUserDto): Promise<CreateUserRO> {
-    const createdUser: UserPrismaModel = await this.prismaService.user.create({
-      data: {
-        ...dto,
-        password: await hash(dto.password),
-      },
-    });
 
-    return {
-      id: createdUser.id,
-      name: createdUser.name,
-      email: createdUser.email,
-      cpf: createdUser.cpf,
-      phone: createdUser.phone,
-      createdAt: createdUser.createdAt,
-      updatedAt: createdUser.updatedAt,
-    };
+  async create(dto: CreateUserDto): Promise<CreateUserRO> {
+    try {
+      const createdUser: UserPrismaModel = await this.prismaService.user.create(
+        {
+          data: {
+            ...dto,
+            password: await hash(dto.password),
+          },
+        },
+      );
+
+      return {
+        id: createdUser.id,
+        name: createdUser.name,
+        email: createdUser.email,
+        cpf: createdUser.cpf,
+        phone: createdUser.phone,
+        createdAt: createdUser.createdAt,
+        updatedAt: createdUser.updatedAt,
+      };
+    } catch (e) {
+      if (
+        e instanceof Prisma.PrismaClientKnownRequestError &&
+        e.code === 'P2002'
+      ) {
+        if (e.meta?.target) {
+          throw new ConflictException(
+            `Field ${e.meta?.target} already in use.`,
+          );
+        }
+      }
+      throw new InternalServerErrorException('Internal Server Error.');
+    }
   }
 }

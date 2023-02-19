@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { CreateUserDto } from './boundary';
-import { CreateUserRO } from './boundary/create-user.ro';
+import { CreateUserDto, CreateUserRO } from './boundary';
 import { UserRepository } from './repository';
 
 @Injectable()

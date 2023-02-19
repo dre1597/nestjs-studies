@@ -1,5 +1,4 @@
-import { CreateUserDto } from '../boundary';
-import { CreateUserRO } from '../boundary/create-user.ro';
+import { CreateUserDto, CreateUserRO } from '../boundary';
 
 export abstract class UserRepository {
   abstract find(): Promise<CreateUserRO[]>;
