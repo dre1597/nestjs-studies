@@ -22,15 +22,15 @@ model User {
 
 model Address {
   id           String   @id @default(uuid())
-  complement   String
+  complement   String?
   numberAdress Int
   cep          String
   createdAt    DateTime @default(now())
   updatedAt    DateTime @default(now()) @updatedAt
   userId       String   @unique
   cityId       String
-  city         City     @relation(fields: [cityId], references: [id])
-  user         User     @relation(fields: [userId], references: [id])
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  city         City     @relation(fields: [cityId], references: [id], onDelete: Cascade)
 }
 
 model City {
@@ -40,7 +40,7 @@ model City {
   updatedAt DateTime  @default(now()) @updatedAt
   stateId   String
   addresses Address[]
-  state     State     @relation(fields: [stateId], references: [id])
+  state     State     @relation(fields: [stateId], references: [id], onDelete: Cascade)
 }
 
 model State {
