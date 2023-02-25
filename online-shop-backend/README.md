@@ -6,6 +6,12 @@ I'm following the videos from this [YouTube series](https://www.youtube.com/watc
 - Using Prisma instead of Typeorm
 - Using Sqlite instead of Postgres
 
+
+The list of states and cities is from this [gist](https://gist.github.com/djalmaaraujo/3013866).
+
+
+---
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
@@ -64,6 +70,15 @@ $ yarn run test:e2e
 
 # test coverage
 $ yarn run test:cov
+```
+
+## Migration and seeds
+
+```bash
+# run migrations
+$ yarn prisma migrate dev
+# run seed
+$ yarn prisma db seed
 ```
 
 ## Support
