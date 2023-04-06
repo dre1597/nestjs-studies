@@ -1,0 +1,27 @@
+GET http://localhost:3000/lists
+
+###
+
+GET http://localhost:3000/lists/002a200c-0e7e-48e6-9ed7-0ad1dba4c45b
+
+###
+
+POST http://localhost:3000/lists
+Content-Type: application/json
+
+{
+  "name": "any_name"
+}
+
+###
+
+PATCH http://localhost:3000/lists/002a200c-0e7e-48e6-9ed7-0ad1dba4c45b
+Content-Type: application/json
+
+{
+  "name": "updated_name"
+}
+
+###
+
+DELETE http://localhost:3000/lists/002a200c-0e7e-48e6-9ed7-0ad1dba4c45b
