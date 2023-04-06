@@ -1,26 +1,49 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/sequelize';
+
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
+import { Order } from './entities/order.entity';
 
 @Injectable()
 export class OrdersService {
-  create(createOrderDto: CreateOrderDto) {
-    return 'This action adds a new order';
+  constructor(@InjectModel(Order) private orderModel: typeof Order) {}
+
+  create(createOrderDto: CreateOrderDto): Promise<Order> {
+    return this.orderModel.create({
+      ...createOrderDto,
+    });
   }
 
-  findAll() {
-    return `This action returns all orders`;
+  findAll(): Promise<Order[]> {
+    return this.orderModel.findAll();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} order`;
+  async findOne(id: string): Promise<Order> {
+    const order = await this.orderModel.findOne({
+      where: {
+        id,
+      },
+    });
+
+    if (!order) {
+      throw new NotFoundException('Order not found');
+    }
+
+    return order;
   }
 
-  update(id: number, updateOrderDto: UpdateOrderDto) {
-    return `This action updates a #${id} order`;
+  async update(id: string, updateOrderDto: UpdateOrderDto): Promise<Order> {
+    const order = await this.findOne(id);
+
+    return await order.update({
+      ...updateOrderDto,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} order`;
+  async remove(id: string): Promise<void> {
+    const order = await this.findOne(id);
+
+    await order.destroy();
   }
 }
