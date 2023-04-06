@@ -1,0 +1,28 @@
+GET http://localhost:3000/orders
+
+###
+
+GET http://localhost:3000/orders/1
+
+###
+
+POST http://localhost:3000/orders
+Content-Type: application/json
+
+{
+  "account_id": 1,
+  "value": 100
+}
+
+###
+
+PATCH http://localhost:3000/orders/1
+Content-Type: application/json
+
+{
+  "value": 100
+}
+
+###
+
+DELETE http://localhost:3000/orders/1
