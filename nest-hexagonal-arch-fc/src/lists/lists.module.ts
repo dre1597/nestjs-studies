@@ -1,12 +1,14 @@
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { HttpModule } from '@nestjs/axios';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 import { ListsService } from './lists.service';
 import { ListsController } from './lists.controller';
 import { ListModel } from './entities/list.model';
 import { ListRepositorySequelize } from './repositories/list-repository.sequelize';
 import { ListRepositoryHttp } from './repositories/list-repository.http';
+import { CreateListInCrmListener } from './listeners/create-list-in-crm.listener';
 
 @Module({
   imports: [
@@ -20,6 +22,7 @@ import { ListRepositoryHttp } from './repositories/list-repository.http';
     ListsService,
     ListRepositorySequelize,
     ListRepositoryHttp,
+    CreateListInCrmListener,
     {
       provide: 'ListPersistenceRepository',
       useExisting: ListRepositorySequelize,
@@ -27,6 +30,10 @@ import { ListRepositoryHttp } from './repositories/list-repository.http';
     {
       provide: 'ListIntegrationRepository',
       useExisting: ListRepositoryHttp,
+    },
+    {
+      provide: 'EventEmitter',
+      useExisting: EventEmitter2,
     },
   ],
 })

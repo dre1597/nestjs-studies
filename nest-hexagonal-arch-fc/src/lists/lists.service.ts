@@ -1,22 +1,24 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import EventEmitter from 'events';
 
 import { CreateListDto } from './dto/create-list.dto';
 import { ListRepositoryInterface } from './repositories/list-repository.interface';
 import { ListEntity } from './entities/list.entity';
+import { ListCreatedEvent } from './events/list-created.event';
 
 @Injectable()
 export class ListsService {
   constructor(
     @Inject('ListPersistenceRepository')
     private listPersistenceRepository: ListRepositoryInterface,
-    @Inject('ListIntegrationRepository')
-    private listIntegrationRepository: ListRepositoryInterface,
+    @Inject('EventEmitter')
+    private eventEmitter: EventEmitter,
   ) {}
 
   async create(createListDto: CreateListDto): Promise<ListEntity> {
     const list = new ListEntity(createListDto.name);
     await this.listPersistenceRepository.create(list);
-    await this.listIntegrationRepository.create(list);
+    this.eventEmitter.emit('list.created', new ListCreatedEvent(list));
 
     return list;
   }
