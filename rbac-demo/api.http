@@ -1,0 +1,32 @@
+### generate an admin token
+GET localhost:3000/generate-token?role=ADMIN
+
+### generate a user token
+GET localhost:3000/generate-token?role=USER
+
+### generate a guest token
+GET localhost:3000/generate-token?role=CLIENT
+
+### admin only endpoint with admin token
+GET localhost:3000/admin
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU1ODU1ZWQzLTQ5NjMtNDNjZC05MWE0LWEyMjAzMTkzZWIzMyIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY5NDkxMDc3MiwiZXhwIjoxNjk1NTE1NTcyfQ.QnMSX2tptlNsEpmIvoK5hS3MUTFAckT-TI0XYMr1xoQ
+
+### admin only endpoint with user token
+GET localhost:3000/admin
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZlYTNiYzgyLWYzZGItNGRiNS1hOWRiLWFjNWU2NzRiYzY0NSIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjk0OTEyMDcwLCJleHAiOjE2OTU1MTY4NzB9.VmrG0DB98V2SsIqmWa-4HaMzLqmTWmQYs1s_wsIqelQ
+
+### admin only endpoint with guest token
+GET localhost:3000/admin
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAyODlkNzZjLWEwN2MtNGQ1NC05YmMzLThhNzU5ZjVmMTNkZiIsInJvbGUiOiJDTElFTlQiLCJpYXQiOjE2OTQ5MTIxODgsImV4cCI6MTY5NTUxNjk4OH0.E13Xx8OEBsCe0OVgsP3Aua0s73Hk7191GDXeiKhYh9E
+
+### user or moderator only endpoint with admin token
+GET localhost:3000/user-moderator
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU1ODU1ZWQzLTQ5NjMtNDNjZC05MWE0LWEyMjAzMTkzZWIzMyIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY5NDkxMDc3MiwiZXhwIjoxNjk1NTE1NTcyfQ.QnMSX2tptlNsEpmIvoK5hS3MUTFAckT-TI0XYMr1xoQ
+
+### user or moderator only endpoint with user token
+GET localhost:3000/user-moderator
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZlYTNiYzgyLWYzZGItNGRiNS1hOWRiLWFjNWU2NzRiYzY0NSIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNjk0OTEyMDcwLCJleHAiOjE2OTU1MTY4NzB9.VmrG0DB98V2SsIqmWa-4HaMzLqmTWmQYs1s_wsIqelQ
+
+### user or moderator only endpoint with guest token
+GET localhost:3000/user-moderator
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAyODlkNzZjLWEwN2MtNGQ1NC05YmMzLThhNzU5ZjVmMTNkZiIsInJvbGUiOiJDTElFTlQiLCJpYXQiOjE2OTQ5MTIxODgsImV4cCI6MTY5NTUxNjk4OH0.E13Xx8OEBsCe0OVgsP3Aua0s73Hk7191GDXeiKhYh9E
